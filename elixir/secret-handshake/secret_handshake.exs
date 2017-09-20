@@ -17,9 +17,10 @@ defmodule SecretHandshake do
   def commands(code) do
     actions = ["wink", "double wink", "close your eyes", "jump"]
     Integer.digits(code, 2)
+    |> Enum.reverse
     |> Stream.with_index
     |> Enum.map(fn({item, i}) ->
-        Enum.at actions, i
+        if item == 1, do: Enum.at actions, i
       end)
   end
 end
